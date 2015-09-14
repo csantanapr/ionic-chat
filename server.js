@@ -16,14 +16,27 @@ var cfenv = require('cfenv');
 var app = express();
 
 // serve the files out of ./public as our main files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/www'));
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
-// start server on the specified port and binding host
-app.listen(appEnv.port, function() {
+var server = require('http').createServer();
 
-	// print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({ server:server });
+
+wss.on('connection', function connection(ws) {
+
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+    ws.send("you "+message);
+  });
+
+  ws.send('Connection established');
+});
+
+server.on('request', app);
+server.listen(appEnv.port, function () { 
+  console.log('Listening on ' + appEnv.url) 
 });
