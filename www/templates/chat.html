@@ -1,25 +1,25 @@
 <ion-view view-title="IonChat">
-    <ion-nav-buttons side="left">
-        <button class="button button-icon ion-gear-a" ng-click="modal.show()"></button>
-    </ion-nav-buttons>
-    <ion-content delegate-handle="chat" id="chat-list">
-        <div class="card" ng-repeat="post in posts" ng-class="{myself:post.user == handle}">
-            <div class="by">
-                {{post.user ? post.user : 'Anonymous'}}
-                <small>{{post.timestamp | timeAgo}}</small>
-            </div>
-            <div class="message">
-                {{post.message}}
-            </div>
-            <img ng-if="post.img" ng-src="{{post.img}}" />
+<ion-nav-buttons side="left">
+    <button class="button button-icon ion-gear-b" ng-click="modal.show()"></button>
+</ion-nav-buttons>
+<ion-content delegate-handle="chat" id="chat-list">
+    <div class="card" ng-repeat="post in posts" ng-class="{myself:post.user == handle}">
+        <div class="by">
+            {{post.user ? post.user : 'Anonymous'}}
+            <small>{{post.timestamp | timeAgo}}</small>
         </div>
-    </ion-content>
-    <ion-footer-bar>
-        <form id="footer-input" ng-submit="add(message)">
-            <i class="icon ion-camera" ng-click="takePicture()"></i>
-            <label class="bar-input">
-                <input type="text" placeholder="Message" ng-model="message">
-            </label>
-        </form>
-    </ion-footer-bar>
+        <div class="message">
+            {{post.message}}
+        </div>
+        <img ng-if="post.img" ng-src="{{post.img}}" />
+    </div>
+</ion-content>
+<ion-footer-bar>
+    <form id="footer-input" ng-submit="add(message)">
+        <i class="icon ion-camera" ng-click="takePicture()"></i>
+        <label class="bar-input">
+            <input type="text" placeholder="Message" ng-model="message">
+        </label>
+    </form>
+</ion-footer-bar>
 </ion-view>

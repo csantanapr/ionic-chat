@@ -1,0 +1,17 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Account</h1>
+        <button class="button button-clear button-positive" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <label class="item item-input">
+                <span class="input-label">Handle</span>
+                <input type="text" ng-model="handle">
+            </label>
+            <button class="button button-full button-positive" ng-click="save(handle)">
+                Save
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>
