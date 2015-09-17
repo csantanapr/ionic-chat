@@ -14,7 +14,8 @@
         <img ng-if="post.img" ng-src="{{post.img}}" />
     </div>
 </ion-content>
-<ion-footer-bar>
+
+<ion-footer-bar keyboard-attach>
     <form id="footer-input" ng-submit="add(message)">
         <i class="icon ion-camera" ng-click="takePicture()"></i>
         <label class="bar-input">
@@ -22,4 +23,5 @@
         </label>
     </form>
 </ion-footer-bar>
+
 </ion-view>

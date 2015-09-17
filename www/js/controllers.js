@@ -40,10 +40,10 @@ angular.module('starter.controllers', [])
 				}, {
 					text: 'Selfie'
 				}, {
-					text: 'Saved Photo'
+					text: 'Photo Library'
 				}
 			],
-			titleText: 'Take a...',
+			//titleText: 'Take a...',
 			cancelText: 'Cancel',
 			buttonClicked: function (index) {
 				ionic.Platform.isWebView() ? takeARealPicture(index) : takeAFakePicture();
@@ -53,13 +53,13 @@ angular.module('starter.controllers', [])
 	
 		function takeARealPicture(cameraIndex) {
 			var options = {
-				quality: 50,
+				quality: 30,
 				sourceType: cameraIndex === 2 ? 2 : 1,
 				cameraDirection: cameraIndex,
 				destinationType: Camera.DestinationType.DATA_URL,
 				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 500,
-				targetHeight: 600,
+				//targetWidth: 500,
+				//targetHeight: 600,
 				saveToPhotoAlbum: false
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
