@@ -44,3 +44,7 @@ margin-right: 25px;
     -webkit-flex-grow: 1;
     flex-grow: 1; 
 }
+#footer-input label input {
+    padding-left: 5px;
+    width: 100%;
+}
