@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, ChatManager, $cordovaCamera, FakeCamera) {
+.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, ChatManager, $cordovaCamera, FakeCamera, $timeout) {
  	$scope.handle = localStorage.handle || 'Anonymous';
 	$scope.posts = ChatManager.posts;
 	
@@ -23,7 +23,9 @@ angular.module('starter.controllers', [])
 	}
 	
 	function scrollBottom() {
-		$ionicScrollDelegate.$getByHandle('chat').scrollBottom();
+		$timeout(function() {
+          $ionicScrollDelegate.scrollBottom(true);
+       }, 300);
 	}
 	//$scope.posts.$watch(scrollBottom);
 	
