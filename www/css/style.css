@@ -6,6 +6,7 @@
 padding: 15px;
 color: #222222;
 margin-right: 25px; 
+max-width: 500px;
 }
 #chat-list .card.myself {
 	margin-right: 10px;
