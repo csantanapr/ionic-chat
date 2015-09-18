@@ -4,6 +4,7 @@
 </ion-nav-buttons>
 
 <ion-content style="background-color:#203849">
+  <div style="max-width: 500px; margin-left:auto; margin-right:auto">
   <div class="card" ng-repeat="post in posts" style="max-width: 500px" ng-class="{myself:post.user == handle}">
     <div class="item item-avatar item-text-wrap">
         <img src="http://ionicframework.com/img/docs/venkman.jpg">
@@ -18,6 +19,7 @@
         <img ng-if="post.img" ng-src="{{post.img}}" />
     </div>
     
+  </div>
   </div>
 </ion-content>
 
