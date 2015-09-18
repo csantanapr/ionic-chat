@@ -1,34 +1,7 @@
 /* Empty. Add your own CSS if you like */
-#chat-list {
-  background: #203849; 
-}
-#chat-list .card {
-padding: 15px;
-color: #222222;
-margin-right: 25px; 
-max-width: 500px;
-}
-#chat-list .card.myself {
-	margin-right: 10px;
+
+.myself {
 	margin-left: 25px; 
-}
-#chat-list .card.myself .by {
-	color: #4f8ef7; 
-}
-#chat-list .card .by {
-	font-size: 12px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	line-height: 1em; 
-}
-#chat-list .card .by small {
-	color: #bbbbbb; 
-}
-#chat-list .card .message {
-	font-size: 14px; 
-}
-#chat-list .card img {
-	width: 100%; 
 }
 #footer-input {
   display: -webkit-flex;
