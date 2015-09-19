@@ -14,11 +14,16 @@ wss.on('connection', function connection(ws) {
 
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
-    ws.send("you "+message);
+    //ws.send(message);
+    //broadcast
+    wss.clients.forEach(function each(client) {
+          client.send(message);
+    });
   });
 
-  ws.send('Connection established');
+  //ws.send('Connection established');
 });
+
 
 server.on('request', app);
 server.listen(appEnv.port, function () { 
