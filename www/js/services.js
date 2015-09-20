@@ -30,10 +30,7 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
     var webSocketProtocol = 'ws:'
     //var webSocketProtocol = $window.location.protocol === 'http:' ? 'ws:' : 'wss:';
     var cbPostArrived;
-    
-    function init(cb){
-        cbPostArrived = cb;        
-    }
+    var user;
     var posts = [
         {
             message: 'hello',
@@ -42,24 +39,33 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
             handle: 'carlos'
         }
     ];
-    
     var ws = new WebSocket(webSocketProtocol+'//'+webSocketHost);
-    ws.onopen = function(){  
-        console.log("Socket has been opened!");  
-    };
-    ws.onmessage = function(post){
+    function init(cb, handle){
+        cbPostArrived = cb;
+        user= handle;        
+    }
+    function addLocalPost(post){
         $rootScope.$apply(function() {
-            posts.push(JSON.parse(post.data));
+            posts.push(post);
             if(cbPostArrived){
                 cbPostArrived();
             }
         });
-        
+    }
+    ws.onopen = function(){  
+        console.log("Socket has been opened!");  
+    };
+    ws.onmessage = function(post){
+        var postmessage = JSON.parse(post.data);
+        if(postmessage.user !== user){
+            addLocalPost(postmessage)
+        } 
     }
     return {
         posts: posts,
         add: function(post){
             ws.send(JSON.stringify(post));
+            posts.push(post);  
         },
         init: init
     };
