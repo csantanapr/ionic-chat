@@ -28,6 +28,7 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
     
     //var webSocketHost = $window.location.host;
     var webSocketHost = 'ionic.mybluemix.net';
+    var webSocketProtocol = $window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     
     var posts = [
         {
@@ -38,7 +39,7 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
         }
     ];
     
-    var ws = new WebSocket("ws://"+webSocketHost);
+    var ws = new WebSocket(webSocketProtocol+'//'+webSocketHost);
     ws.onopen = function(){  
         console.log("Socket has been opened!");  
     };
