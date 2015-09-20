@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
  	$scope.handle = localStorage.handle || 'Anonymous';
 	//$scope.posts = ChatManager.posts;
 	$scope.posts = WebSocketSvc.posts;
-	WebSocketSvc.init(scrollBottom);
+	WebSocketSvc.init(scrollBottom,$scope.handle );
 
 	function addPost(message, img) {
 		//ChatManager.add({
