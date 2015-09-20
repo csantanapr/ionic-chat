@@ -25,11 +25,15 @@ angular.module('starter.services').factory('FakeCamera', function () {
 });
 
 angular.module('starter.services').factory('WebSocketSvc', function ($rootScope, $window) {
-    
-    //var webSocketHost = $window.location.host;
+    //var webSocketHost = $window.location.hostname+':6001';
     var webSocketHost = 'ionic.mybluemix.net';
-    var webSocketProtocol = $window.location.protocol === 'http' ? 'ws:' : 'wss:';
+    var webSocketProtocol = 'ws:'
+    //var webSocketProtocol = $window.location.protocol === 'http:' ? 'ws:' : 'wss:';
+    var cbPostArrived;
     
+    function init(cb){
+        cbPostArrived = cb;        
+    }
     var posts = [
         {
             message: 'hello',
@@ -46,6 +50,9 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
     ws.onmessage = function(post){
         $rootScope.$apply(function() {
             posts.push(JSON.parse(post.data));
+            if(cbPostArrived){
+                cbPostArrived();
+            }
         });
         
     }
@@ -53,7 +60,8 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
         posts: posts,
         add: function(post){
             ws.send(JSON.stringify(post));
-        }
+        },
+        init: init
     };
 });
 

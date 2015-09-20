@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
  	$scope.handle = localStorage.handle || 'Anonymous';
 	//$scope.posts = ChatManager.posts;
 	$scope.posts = WebSocketSvc.posts;
+	WebSocketSvc.init(scrollBottom);
 
 	function addPost(message, img) {
 		//ChatManager.add({
@@ -27,6 +28,7 @@ angular.module('starter.controllers', [])
 	function scrollBottom() {
 		$timeout(function() {
           $ionicScrollDelegate.scrollBottom(true);
+		  console.log('scrolled to bottom');
        }, 300);
 	}
 	//$scope.posts.$watch(scrollBottom);
