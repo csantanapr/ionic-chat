@@ -28,7 +28,7 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
     
     //var webSocketHost = $window.location.host;
     var webSocketHost = 'ionic.mybluemix.net';
-    var webSocketProtocol = $window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var webSocketProtocol = $window.location.protocol === 'http' ? 'ws:' : 'wss:';
     
     var posts = [
         {
