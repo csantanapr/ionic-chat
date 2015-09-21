@@ -63,7 +63,7 @@ angular.module('starter.controllers', [])
 	
 		function takeARealPicture(cameraIndex) {
 			var options = {
-				quality: 30,
+				quality: 20,
 				sourceType: cameraIndex === 2 ? 2 : 1,
 				cameraDirection: cameraIndex,
 				destinationType: Camera.DestinationType.DATA_URL,
