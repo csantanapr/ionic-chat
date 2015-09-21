@@ -15,7 +15,7 @@ angular.module('starter.controllers', [])
 	//$scope.posts = SocketIO.posts;
 	//WebSocketSvc.init(scrollBottom,$scope.handle );
     //SocketIO.init(scrollBottom,$scope.handle );
-	
+	$scope.avatar = "img/venkman.jpg";
 	function addPost(message, img) {
 		//ChatManager.add({
 		//WebSocketSvc.add({
@@ -86,10 +86,12 @@ angular.module('starter.controllers', [])
 		}
 	};
 	
-	$scope.save = function (handle) {
+	$scope.save = function (handle,avatar) {
 		localStorage.handle = $scope.handle = handle;
 		$scope.posts = SocketIO.posts;
         SocketIO.init(scrollBottom,$scope.handle );
+		console.log($scope.avatar);
+		$scope.avatar=avatar;
 		$scope.modal.hide();
 	}
 	

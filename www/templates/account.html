@@ -9,7 +9,22 @@
                 <span class="input-label">Handle</span>
                 <input type="text" ng-model="handle">
             </label>
-            <button class="button button-full button-royal" ng-click="save(handle)">
+            <label class="item item-avatar item-radio">
+                <img src="img/venkman.jpg">
+                <input type="radio" name="group" ng-model="avatar" value="img/venkman.jpg">
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+            <label class="item item-avatar item-radio">
+                <img src="img/spengler.jpg">
+                <input type="radio" name="group" ng-model="avatar" value="img/spengler.jpg">
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+            <label class="item item-avatar item-radio">
+                <img src="img/slimer.jpg">
+                <input type="radio" name="group" ng-model="avatar" value="img/slimer.jpg">
+                <i class="radio-icon ion-checkmark"></i>
+            </label>
+            <button class="button button-full button-royal" ng-click="save(handle,avatar)">
                 Save
             </button>
         </ion-list>
