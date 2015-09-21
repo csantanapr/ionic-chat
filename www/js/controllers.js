@@ -9,12 +9,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, $cordovaCamera, FakeCamera, $timeout, SocketIO) {
- 	$scope.handle = localStorage.handle || 'Anonymous';
+ 	//$scope.handle = localStorage.handle || 'Anonymous';
 	//$scope.posts = ChatManager.posts;
 	//$scope.posts = WebSocketSvc.posts;
-	$scope.posts = SocketIO.posts;
+	//$scope.posts = SocketIO.posts;
 	//WebSocketSvc.init(scrollBottom,$scope.handle );
-    SocketIO.init(scrollBottom,$scope.handle );
+    //SocketIO.init(scrollBottom,$scope.handle );
 	
 	function addPost(message, img) {
 		//ChatManager.add({
@@ -88,6 +88,8 @@ angular.module('starter.controllers', [])
 	
 	$scope.save = function (handle) {
 		localStorage.handle = $scope.handle = handle;
+		$scope.posts = SocketIO.posts;
+        SocketIO.init(scrollBottom,$scope.handle );
 		$scope.modal.hide();
 	}
 	
@@ -96,9 +98,11 @@ angular.module('starter.controllers', [])
 		animation: 'slide-in-up'
 	}).then(function (modal) {
 		$scope.modal = modal;
+		$scope.modal.show();
 	});
 	
 	$scope.openModal = function () {
 		$scope.modal.show();
 	};
+	
 });
