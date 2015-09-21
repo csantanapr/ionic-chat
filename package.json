@@ -7,8 +7,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "express": "4.12.x",
     "cfenv": "1.0.x",
+    "express": "4.12.x",
+    "socket.io": "^1.3.6",
     "ws": "0.8.x"
   },
   "devDependencies": {

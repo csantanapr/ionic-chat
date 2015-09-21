@@ -8,15 +8,18 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, $cordovaCamera, FakeCamera, $timeout, ChatManager, WebSocketSvc) {
+.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, $cordovaCamera, FakeCamera, $timeout, SocketIO) {
  	$scope.handle = localStorage.handle || 'Anonymous';
 	//$scope.posts = ChatManager.posts;
-	$scope.posts = WebSocketSvc.posts;
-	WebSocketSvc.init(scrollBottom,$scope.handle );
-
+	//$scope.posts = WebSocketSvc.posts;
+	$scope.posts = SocketIO.posts;
+	//WebSocketSvc.init(scrollBottom,$scope.handle );
+    SocketIO.init(scrollBottom,$scope.handle );
+	
 	function addPost(message, img) {
 		//ChatManager.add({
-		  WebSocketSvc.add({
+		//WebSocketSvc.add({
+		SocketIO.add({
 			message: message ? message : null,
 			img: img ? img : null,
 			timestamp: new Date().getTime(),
