@@ -29,6 +29,7 @@ io.on('connection', function (socket) {
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell the client to execute 'new message'
+    data.avatar = socket.avatar;
     socket.broadcast.emit('new message', {
       username: socket.username,
       message: data
@@ -36,9 +37,11 @@ io.on('connection', function (socket) {
   });
 
   // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (username) {
+  socket.on('add user', function (userInfo) {
     // we store the username in the socket session for this client
+    var username = userInfo.username
     socket.username = username;
+    socket.avatar = userInfo.avatar;
     // add the client's username to the global list
     usernames[username] = username;
     ++numUsers;

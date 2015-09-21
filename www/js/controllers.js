@@ -23,7 +23,8 @@ angular.module('starter.controllers', [])
 			message: message ? message : null,
 			img: img ? img : null,
 			timestamp: new Date().getTime(),
-			user: $scope.handle
+			user: $scope.handle,
+			avatar: $scope.avatar
 		});
 		scrollBottom();
 	}
@@ -89,9 +90,9 @@ angular.module('starter.controllers', [])
 	$scope.save = function (handle,avatar) {
 		localStorage.handle = $scope.handle = handle;
 		$scope.posts = SocketIO.posts;
-        SocketIO.init(scrollBottom,$scope.handle );
-		console.log($scope.avatar);
-		$scope.avatar=avatar;
+        SocketIO.init(scrollBottom,$scope.handle, avatar);
+		$scope.avatar = avatar;
+		$scope.add("hello");
 		$scope.modal.hide();
 	}
 	

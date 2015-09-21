@@ -1,4 +1,4 @@
-angular.module('starter.services',['btford.socket-io']);
+angular.module('starter.services',[]);
 angular.module('starter.services').factory('ChatManager', function () {
     var posts = [
         {
@@ -70,37 +70,18 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
         init: init
     };
 });
-angular.module('starter.services').factory('SocketIO', function ($rootScope, socketFactory) {
-
-
-  //return mySocket;
-  
-      //var webSocketHost = $window.location.hostname+':6001';
+angular.module('starter.services').factory('SocketIO', function ($rootScope) {
     var webSocketHost = 'ionic.mybluemix.net';
-    var webSocketProtocol = 'ws:'
-    //var webSocketProtocol = $window.location.protocol === 'http:' ? 'ws:' : 'wss:';
-      var myIoSocket = io('http://localhost:6001');
+    var socket = io(webSocketHost);
 
-  var socket = socketFactory({
-    ioSocket: myIoSocket
-  });
-  //socket.forward('broadcast');
-  
     var cbPostArrived;
-    var user;
-    var posts = [
-        {
-            message: 'hello',
-            img: null,
-            timestamp: new Date().getTime(),
-            handle: 'carlos'
-        }
-    ];
-    //var ws = new WebSocket(webSocketProtocol+'//'+webSocketHost);
-    function init(cb, handle){
+    var posts = [];
+    function init(cb, handle, avatar){
         cbPostArrived = cb;
-        user= handle;   
-        socket.emit('add user', handle);     
+        socket.emit('add user', {
+            username: handle,
+            avatar: avatar
+        });     
     }
     function addLocalPost(post){
         $rootScope.$apply(function() {
@@ -110,9 +91,7 @@ angular.module('starter.services').factory('SocketIO', function ($rootScope, soc
             }
         });
     }
-    // Whenever the server emits 'login', log the login message
     socket.on('login', function (data) {
-        //connected = true;
         console.log("SocketIO Chat welcome,",data);
     });
     socket.on('new message', function (data) {
@@ -122,7 +101,6 @@ angular.module('starter.services').factory('SocketIO', function ($rootScope, soc
     return {
         posts: posts,
         add: function(post){
-            //ws.send(JSON.stringify(post));
             posts.push(post);  
             socket.emit('new message', post);
         },
