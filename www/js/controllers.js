@@ -63,13 +63,13 @@ angular.module('starter.controllers', [])
 	
 		function takeARealPicture(cameraIndex) {
 			var options = {
-				quality: 20,
+				quality: 30,
 				sourceType: cameraIndex === 2 ? 2 : 1,
 				cameraDirection: cameraIndex,
 				destinationType: Camera.DestinationType.DATA_URL,
 				encodingType: Camera.EncodingType.JPEG,
-				//targetWidth: 500,
-				//targetHeight: 600,
+				targetWidth: 500,
+				targetHeight: 600,
 				saveToPhotoAlbum: false
 			};
 			$cordovaCamera.getPicture(options).then(function (imageData) {
