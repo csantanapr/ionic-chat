@@ -71,9 +71,12 @@ angular.module('starter.services').factory('WebSocketSvc', function ($rootScope,
     };
 });
 angular.module('starter.services').factory('SocketIO', function ($rootScope) {
-    var webSocketHost = 'ionic.mybluemix.net';
+    var webSocketHost = 'http://ionic.mybluemix.net';
     var socket = io(webSocketHost);
 
+    socket.on('connect', function() {
+            alert('connected');
+        });
     var cbPostArrived;
     var posts = [];
     function init(cb, handle, avatar){
