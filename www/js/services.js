@@ -1,23 +1,62 @@
-angular.module('starter.services',[]);
-angular.module('starter.services').factory('ChatManager', function () {
-    var posts = [
-        {
-            message: 'hello',
-            img: null,
-            timestamp: new Date().getTime(),
-            handle: 'carlos'
-        }
-    ];
+angular.module('starter.services', []);
+angular.module('starter.services').factory('FakeChat', function ($rootScope) {
+    var posts = [];
+    var cbPostArrived;
     return {
         posts: posts,
-        add: function(post){
-            posts.push(post);
+        add: function (post) {
+                posts.push(post);
+                cbPostArrived();
+        },
+        init: function (cb, handle, avatar) {
+            cbPostArrived = cb;
         }
     };
 });
 
+angular.module('starter.services').factory('SocketIO', function ($rootScope) {
+    var webSocketHost = 'http://ionic.mybluemix.net';
+    var socket = io(webSocketHost);
+
+    socket.on('connect', function () {
+        console.log('connected');
+    });
+    var cbPostArrived;
+    var posts = [];
+    function init(cb, handle, avatar) {
+        cbPostArrived = cb;
+        socket.emit('add user', {
+            username: handle,
+            avatar: avatar
+        });
+    }
+    function addLocalPost(post) {
+        $rootScope.$apply(function () {
+            posts.push(post);
+            cbPostArrived();
+        });
+    }
+    socket.on('login', function (data) {
+        console.log("SocketIO Chat welcome,", data);
+    });
+    socket.on('new message', function (data) {
+        addLocalPost(data.message)
+    });
+
+    return {
+        posts: posts,
+        add: function (post) {
+            posts.push(post);
+            cbPostArrived();
+            socket.emit('new message', post);
+        },
+        init: init
+    };
+
+});
+
 angular.module('starter.services').factory('Camera', function ($ionicActionSheet, $cordovaCamera, $q) {
-    function showSheet () {
+    function showSheet() {
         var deferred = $q.defer();
         $ionicActionSheet.show({
             buttons: [
@@ -37,7 +76,7 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
         });
         return deferred.promise;
     }
-    
+
     function takeRealPicture(cameraIndex, deferred) {
         var options = {
             quality: 30,
@@ -56,59 +95,14 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
             takeFakePicture(deferred);
         });
     }
-    
-    function takeFakePicture(deferred){
+
+    function takeFakePicture(deferred) {
         deferred.resolve("img/bluemix-logo.png");
     }
-    
-    
+
+
     return {
         takePicture: showSheet
     }
-});
-
-angular.module('starter.services').factory('SocketIO', function ($rootScope) {
-    var webSocketHost = 'http://ionic.mybluemix.net';
-    var socket = io(webSocketHost);
-
-    socket.on('connect', function() {
-            //alert('connected');
-        });
-    var cbPostArrived;
-    var posts = [];
-    function init(cb, handle, avatar){
-        cbPostArrived = cb;
-        socket.emit('add user', {
-            username: handle,
-            avatar: avatar
-        });     
-    }
-    function addLocalPost(post){
-        $rootScope.$apply(function() {
-            posts.push(post);
-            if(cbPostArrived){
-                cbPostArrived();
-            }
-        });
-    }
-    socket.on('login', function (data) {
-        console.log("SocketIO Chat welcome,",data);
-    });
-    socket.on('new message', function (data) {
-            addLocalPost(data.message) 
-    });
-  
-    return {
-        posts: posts,
-        add: function(post){
-            posts.push(post);
-            if(cbPostArrived){
-                cbPostArrived();
-            }  
-            socket.emit('new message', post);
-        },
-        init: init
-    };
-  
 });
 
