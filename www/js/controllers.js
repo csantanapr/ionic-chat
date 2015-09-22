@@ -8,17 +8,12 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicActionSheet, $ionicModal, $cordovaCamera, FakeCamera, $timeout, SocketIO) {
- 	//$scope.handle = localStorage.handle || 'Anonymous';
-	//$scope.posts = ChatManager.posts;
-	//$scope.posts = WebSocketSvc.posts;
-	//$scope.posts = SocketIO.posts;
-	//WebSocketSvc.init(scrollBottom,$scope.handle );
-    //SocketIO.init(scrollBottom,$scope.handle );
-	$scope.avatar = "img/venkman.jpg";
+.controller('ChatCtrl', function($scope, $ionicScrollDelegate, $ionicModal, $timeout, Camera, SocketIO) {
+ 	$scope.handle = localStorage.handle;
+	$scope.avatar = localStorage.avatar || "img/venkman.jpg";
+	$scope.posts = SocketIO.posts;
 	function addPost(message, img) {
 		//ChatManager.add({
-		//WebSocketSvc.add({
 		SocketIO.add({
 			message: message ? message : null,
 			img: img ? img : null,
@@ -26,7 +21,7 @@ angular.module('starter.controllers', [])
 			user: $scope.handle,
 			avatar: $scope.avatar
 		});
-		scrollBottom();
+		//scrollBottom();
 	}
 	
 	function scrollBottom() {
@@ -35,7 +30,6 @@ angular.module('starter.controllers', [])
 		  console.log('scrolled to bottom');
        }, 300);
 	}
-	//$scope.posts.$watch(scrollBottom);
 	
 	$scope.add = function (message) {
 		addPost(message);
@@ -43,55 +37,15 @@ angular.module('starter.controllers', [])
 	};
 	
 	$scope.takePicture = function () {
-		$ionicActionSheet.show({
-			buttons: [
-				{
-					text: 'Picture'
-				}, {
-					text: 'Selfie'
-				}, {
-					text: 'Photo Library'
-				}
-			],
-			//titleText: 'Take a...',
-			cancelText: 'Cancel',
-			buttonClicked: function (index) {
-				ionic.Platform.isWebView() ? takeARealPicture(index) : takeAFakePicture();
-				return true;
-			}
+		Camera.takePicture().then(function(photo){
+			addPost(null, photo);
 		});
-	
-		function takeARealPicture(cameraIndex) {
-			var options = {
-				quality: 30,
-				sourceType: cameraIndex === 2 ? 2 : 1,
-				cameraDirection: cameraIndex,
-				destinationType: Camera.DestinationType.DATA_URL,
-				encodingType: Camera.EncodingType.JPEG,
-				targetWidth: 500,
-				targetHeight: 600,
-				saveToPhotoAlbum: false
-			};
-			$cordovaCamera.getPicture(options).then(function (imageData) {
-				var photo = "data:image/jpeg;base64," + imageData;
-				addPost(null, photo);
-			}, function (err) {
-				// error
-				console.error(err);
-				takeAFakePicture();
-			});
-		}
-	
-		function takeAFakePicture() {
-			addPost(null, FakeCamera.getPicture());
-		}
 	};
 	
 	$scope.save = function (handle,avatar) {
 		localStorage.handle = $scope.handle = handle;
-		$scope.posts = SocketIO.posts;
+		localStorage.avatar = $scope.avatar = avatar;
         SocketIO.init(scrollBottom,$scope.handle, avatar);
-		$scope.avatar = avatar;
 		$scope.add("hello");
 		$scope.modal.hide();
 	}
@@ -103,9 +57,5 @@ angular.module('starter.controllers', [])
 		$scope.modal = modal;
 		$scope.modal.show();
 	});
-	
-	$scope.openModal = function () {
-		$scope.modal.show();
-	};
 	
 });

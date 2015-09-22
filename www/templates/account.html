@@ -1,13 +1,12 @@
 <ion-modal-view>
     <ion-header-bar class="bar-calm">
         <h1 class="title">Account</h1>
-        <button class="button button-clear" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
     <ion-content>
         <ion-list>
             <label class="item item-input">
-                <span class="input-label">Handle</span>
-                <input type="text" ng-model="handle">
+                <span class="input-label">Handle:</span>
+                <input type="text" ng-model="handle" placeholder="Username">
             </label>
             <label class="item item-avatar item-radio">
                 <img src="img/venkman.jpg">
@@ -15,7 +14,7 @@
                 <i class="radio-icon ion-checkmark"></i>
             </label>
             <label class="item item-avatar item-radio">
-                <img src="img/spengler.jpg">
+                <img src="img/tully.jpg">
                 <input type="radio" name="group" ng-model="avatar" value="img/spengler.jpg">
                 <i class="radio-icon ion-checkmark"></i>
             </label>
@@ -24,7 +23,7 @@
                 <input type="radio" name="group" ng-model="avatar" value="img/slimer.jpg">
                 <i class="radio-icon ion-checkmark"></i>
             </label>
-            <button class="button button-full button-royal" ng-click="save(handle,avatar)">
+            <button class="button button-full button-calm" ng-click="save(handle,avatar)" ng-disabled="!handle">
                 Save
             </button>
         </ion-list>
