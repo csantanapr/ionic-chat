@@ -1,8 +1,8 @@
 angular.module('starter.controllers', [])
 
 angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicScrollDelegate, $ionicModal, $timeout, Camera, FakeChat, SocketIO) {
-	var ChatManager = FakeChat;
-	//var ChatManager = SocketIO;
+	//var ChatManager = FakeChat;
+	var ChatManager = SocketIO;
 	$scope.handle = localStorage.handle;
 	$scope.avatar = localStorage.avatar || "img/venkman.jpg";
 	$scope.posts = ChatManager.posts;
