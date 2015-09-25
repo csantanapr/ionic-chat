@@ -27,3 +27,17 @@
     padding-left: 5px;
     width: 100%;
 }
+[ng-cloak] {
+  display: none !important;
+}
+.splash {
+  display: none;
+}
+
+[ng-cloak].splash {
+  background-color: #11c1f3;
+  width: 100%;
+  text-align: center;
+  color: white;
+  display: block !important;
+}
