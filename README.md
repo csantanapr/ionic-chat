@@ -1,17 +1,27 @@
-This README.md file is displayed on your project page. You should edit this 
-file to describe your project, including instructions for building and 
-running the project, pointers to the license under which you are making the 
-project available, and anything else you think would be useful for others to
-know.
+## Sample Application for Ionic Chat app using NodeJS Socket IO
 
-We have created an empty license.txt file for you. Well, actually, it says,
-"<Replace this text with the license you've chosen for your project.>" We 
-recommend you edit this and include text for license terms under which you're
-making your code available. A good resource for open source licenses is the 
-[Open Source Initiative](http://opensource.org/).
+## Easy to get started 
+- Step 1: [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://hub.jazz.net/git/csantana/ionic)
+- Step 2: There is no step 2, go ahead open your web browser and start sending messages.
 
-Be sure to update your project's profile with a short description and 
-eye-catching graphic.
 
-Finally, consider defining some sprints and work items in Track & Plan to give 
-interested developers a sense of your cadence and upcoming enhancements.
+
+### To work locally with the code then download source code
+   
+    git clone https://hub.jazz.net/git/csantana/ionic
+	
+### Run the NodeJS Server locally
+	
+	npm start
+	
+### Run using Ionic on Mobile Device or Simulator
+
+- Configure the hostname for Ionic App to connect. 
+- Change from http://ionic.mybluemix.net to your route on Bluemix after deploying app.
+
+
+	ionic platform add android,ios
+	ionic run
+	
+	
+#### License: [Apache 2.0](License.txt)
