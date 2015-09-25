@@ -18,7 +18,7 @@ server.listen(port, function () {
 app.use(require('compression')());
 
 //Minify
-app.use(require('express-minify')());
+//app.use(require('express-minify')());
 
 // Routing
 app.use(express.static(__dirname + '/www'));
