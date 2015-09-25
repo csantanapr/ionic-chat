@@ -14,8 +14,28 @@ angular.module('starter.services').factory('FakeChat', function ($rootScope) {
     };
 });
 
-angular.module('starter.services').factory('SocketIO', function ($rootScope) {
-    var webSocketHost = 'http://ionic.mybluemix.net';
+angular.module('starter.services').factory('serverHost', function ($window, AppConfig) {
+    var finalHost;
+    var appServer = AppConfig.appServer;
+    var localhostPort = AppConfig.localhostPort;
+    var host = $window.location.host;
+    var port = $window.location.port;
+    var protocol = $window.location.protocol
+    
+    if(port === localhostPort){
+        finalHost = protocol + '//' + host + ':'+port;
+    } else if (host.indexOf('mybluemix.net') > 0) {
+        finalHost = protocol + '//' + host;
+    } else {
+        finalHost = appServer;
+    }
+    
+    return finalHost;
+
+});
+
+angular.module('starter.services').factory('SocketIO', function ($rootScope, serverHost) {
+    var webSocketHost = serverHost;
     var socket = io(webSocketHost);
 
     socket.on('connect', function () {
