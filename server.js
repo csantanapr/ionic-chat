@@ -14,6 +14,9 @@ server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
+//Compress
+app.use(require('compression')());
+
 // Routing
 app.use(express.static(__dirname + '/www'));
 
