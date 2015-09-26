@@ -10,3 +10,4 @@ function sendMessage(message){
 	socket.send(message);
 	return 'sent '+message;
 }
+console.log('Welcome Developer, run the function sendMessage("marco")');

@@ -18,7 +18,7 @@ wss.on('connection', function connection(ws) {
     }, 3000);
   });
   ws.on('close',function(){
-    console.log('connections closed');
+    console.log('connection closed');
     clearInterval(interv);
   });
   ws.send('connected');
