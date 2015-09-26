@@ -11,8 +11,8 @@ angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $
 			message: message ? message : null,
 			img: img ? img : null,
 			timestamp: new Date().getTime(),
-			user: $scope.handle,
-			avatar: $scope.avatar
+			user: localStorage.handle,
+			avatar: localStorage.avatar
 		});
 	}
 	function scrollBottom() {
@@ -35,7 +35,7 @@ angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $
 	$scope.save = function (handle, avatar) {
 		localStorage.handle = $scope.handle = handle;
 		localStorage.avatar = $scope.avatar = avatar;
-		ChatManager.init(scrollBottom, $scope.handle, avatar);
+		ChatManager.init(scrollBottom, localStorage.handle, avatar);
 		$scope.add("Joined");
 		$scope.modal.hide();
 	}

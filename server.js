@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
       username: socket.username,
       message: data
     });
-    console.log(socket.username+' say:'+data.message);
+    console.log(socket.username+' say: '+data.message);
   });
 
   // when the client emits 'add user', this listens and executes
