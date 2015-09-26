@@ -104,7 +104,7 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
             cameraDirection: cameraIndex,
             destinationType: Camera.DestinationType.DATA_URL,
             encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 500,
+            targetWidth: 700,
             targetHeight: 600,
             saveToPhotoAlbum: false
         };
