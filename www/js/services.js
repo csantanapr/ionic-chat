@@ -18,7 +18,7 @@ angular.module('starter.services').factory('serverHost', function ($window, AppC
     var finalHost;
     var appServer = AppConfig.appServer;
     var localhostPort = AppConfig.localhostPort;
-    var host = $window.location.host;
+    var host = $window.location.hostname;
     var port = $window.location.port;
     var protocol = $window.location.protocol
     
