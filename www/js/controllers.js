@@ -3,16 +3,16 @@ angular.module('starter.controllers', [])
 angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicScrollDelegate, $ionicModal, $timeout, Camera, FakeChat, SocketIO) {
 	//var ChatManager = FakeChat;
 	var ChatManager = SocketIO;
-	$scope.handle = localStorage.handle;
-	$scope.avatar = localStorage.avatar || "img/venkman.jpg";
+	$scope.handle = localStorage.getItem('handle') || '@csantanapr';
+	$scope.avatar = localStorage.getItem('avatar') || "img/venkman.jpg";
 	$scope.posts = ChatManager.posts;
 	function addPost(message, img) {
 		ChatManager.add({
 			message: message ? message : null,
 			img: img ? img : null,
 			timestamp: new Date().getTime(),
-			user: localStorage.handle,
-			avatar: localStorage.avatar
+			user: localStorage.getItem('handle'),
+			avatar: localStorage.getItem('avatar')
 		});
 	}
 	function scrollBottom() {
@@ -33,8 +33,10 @@ angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $
 	};
 
 	$scope.save = function (handle, avatar) {
-		localStorage.handle = $scope.handle = handle;
-		localStorage.avatar = $scope.avatar = avatar;
+		localStorage.setItem('handle',handle);
+		localStorage.setItem('avatar',avatar);
+		$scope.hanle = handle;
+		$scope.avatar = avatar;
 		ChatManager.init(scrollBottom, localStorage.handle, avatar);
 		$scope.add("Joined");
 		$scope.modal.hide();
