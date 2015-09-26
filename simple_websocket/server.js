@@ -1,5 +1,5 @@
 var   server = require('http').createServer(),
- express = require('express')
+ express = require('express'),
  app = express(),
  WebSocketServer = require('ws').Server,
  wss = new WebSocketServer({ server:server }),
