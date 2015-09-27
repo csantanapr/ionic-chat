@@ -35,12 +35,11 @@ io.on('connection', function (socket) {
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     // we tell the client to execute 'new message'
-    data.avatar = socket.avatar;
     socket.broadcast.emit('new message', {
-      username: socket.username,
+      //username: socket.username,
       message: data
     });
-    console.log(socket.username+' say: '+data.message);
+    console.log(data.user+' say: '+data.message);
   });
 
   // when the client emits 'add user', this listens and executes

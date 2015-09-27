@@ -37,32 +37,29 @@ angular.module('starter.services').factory('serverHost', function ($window, AppC
 angular.module('starter.services').factory('SocketIO', function ($rootScope, serverHost) {
     var webSocketHost = serverHost;
     var socket = io(webSocketHost);
-
+    var cbPostArrived;
+    var posts = [];
+    
+    
     socket.on('connect', function () {
         console.log('connected');
     });
-    var cbPostArrived;
-    var posts = [];
-    function init(cb, handle, avatar) {
+    
+    socket.on('new message', function (data) {
+        addLocalPost(data.message)
+    });
+    
+    function init(cb, handle) {
         cbPostArrived = cb;
-        socket.emit('add user', {
-            username: handle,
-            avatar: avatar
-        });
     }
+    
     function addLocalPost(post) {
         $rootScope.$apply(function () {
             posts.push(post);
             cbPostArrived();
         });
     }
-    socket.on('login', function (data) {
-        console.log("SocketIO Chat welcome,", data);
-    });
-    socket.on('new message', function (data) {
-        addLocalPost(data.message)
-    });
-
+    
     return {
         posts: posts,
         add: function (post) {

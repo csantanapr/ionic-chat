@@ -37,7 +37,7 @@ angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $
 		localStorage.setItem('avatar',avatar);
 		$scope.hanle = handle;
 		$scope.avatar = avatar;
-		ChatManager.init(scrollBottom, localStorage.handle, avatar);
+		ChatManager.init(scrollBottom);
 		$scope.add("Joined");
 		$scope.modal.hide();
 	}
