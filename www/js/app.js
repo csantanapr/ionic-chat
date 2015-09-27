@@ -7,7 +7,7 @@
 angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment'])
 .constant('AppConfig',{
   appServer: 'https://ionic.mybluemix.net',
-  //appServer: 'http://172.16.17.123:6001',
+  //appServer: 'http://10.0.1.17:6001',
   localhostPort: '6001'
 })
 .run(function($ionicPlatform) {

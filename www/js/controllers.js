@@ -3,6 +3,7 @@ angular.module('starter.controllers', [])
 angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicScrollDelegate, $ionicModal, $timeout, Camera, FakeChat, SocketIO) {
 	//var ChatManager = FakeChat;
 	var ChatManager = SocketIO;
+	$scope.isWebView = ionic.Platform.isWebView();
 	$scope.handle = localStorage.getItem('handle') || '@csantanapr';
 	$scope.avatar = localStorage.getItem('avatar') || "img/venkman.jpg";
 	$scope.posts = ChatManager.posts;

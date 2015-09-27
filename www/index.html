@@ -43,7 +43,7 @@
 
         <ion-footer-bar keyboard-attach class="bar-calm">
             <form id="footer-input" ng-submit="add(message)">
-                <i class="icon ion-camera" ng-click="takePicture()"></i>
+                <i class="icon ion-camera" ng-click="takePicture()" ng-show="isWebView"></i>
                 <label class="bar-input">
                     <input type="text" placeholder="Message" ng-model="message">
                 </label>
