@@ -33,14 +33,28 @@ app.enable('trust proxy');
 // http://expressjs.com/api#req.secure). This allows us 
 // to know whether the request was via http or https.
 app.use (function (req, res, next) {
-	if (req.secure || req.hostname === 'localhost') {
+	if (isSecure(req)) {
 		// request was via https, so do no special handling
 		next();
 	} else {
 		// request was via http, so redirect to https
-		res.redirect('https://' + req.headers.host + req.url);
+		res.redirect('https://' + req.hostname + req.originalUrl);
 	}
 });
+function isSecure(req) {
+    // Check the trivial case first.
+    if (req.secure || req.hostname === 'localhost') {
+        return true;
+    }
+    // Check if we are behind Application Request Routing (ARR).
+    // This is typical for Azure.
+    if (req.headers['x-arr-log-id']) {
+        return typeof req.headers['x-arr-ssl'] === 'string';
+    }
+    // Check for forwarded protocol header.
+    // This is typical for AWS.
+    return req.headers['x-forwarded-proto'] === 'https';
+}
 
 // Chatroom
 
