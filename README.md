@@ -36,7 +36,8 @@
   
 ```bash
     $ ionic platform add android,ios
-    $ ionic run
+    $ ionic run android
+    $ open platforms/ios/*.xcodeproj
 ```
 
 ### Software Requirements:
