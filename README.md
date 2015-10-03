@@ -1,38 +1,43 @@
 ## Sample Application for Ionic Chat app using NodeJS Socket IO
 
 ## Easy to get started 
-- Step 1: click this => [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://hub.jazz.net/git/csantana/ionic)
+- Step 1: click this => [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/csantanapr/ionic-chat)
 - Step 2: There is no step 2, go ahead open your web browser on your new domain name https://ionic-john123.mybluemix.net and start sending messages.
 
 ### To work locally with the code download source code
-   
+```bash
     $ git clone https://github.com/csantanapr/ionic-chat
     $ npm install
+```
     
 ### Run the NodeJS Chat Server locally
-	
+```bash
     $ npm start
+```
 
-## Run simple Websockets demo
-    
+### Run simple Websockets demo
+```bash
     $ cd simple_websocket
     $ npm install
     $ npm start
-    
-## Run simple Socketio demo
-    
+```
+
+### Run simple Socketio demo
+```bash
     $ cd simple_socketio
     $ npm install
     $ npm start
-    
+```
+  
 ### Run using Ionic on Mobile Device or Simulator
 
-- Configure the hostname for WebSocket server for Ionic App to connect. 
+- Set the hostname of WebSocket server for Ionic App to connect. 
   - Edit www/js/app.js, change from http://ionic.mybluemix.net to your local ip or remote host on Bluemix after deploying app.
   
-    $ ionic platform add android,ios 
+```bash
+    $ ionic platform add android,ios
     $ ionic run
-    
+```
 
 ### Software Requirements:
 - Minimum
