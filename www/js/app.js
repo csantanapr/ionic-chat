@@ -6,8 +6,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment','ngStorage'])
 .constant('AppConfig',{
-  //appServer: 'https://ionic.mybluemix.net',
-  appServer: 'http://10.0.1.17:6001',
+  appServer: 'https://ionic.mybluemix.net',
+  //appServer: 'http://10.0.1.17:6001',
   localhostPort: '6001'
 })
 .run(function($ionicPlatform) {
