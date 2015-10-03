@@ -4,10 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment','ngStorage'])
 .constant('AppConfig',{
-  appServer: 'https://ionic.mybluemix.net',
-  //appServer: 'http://10.0.1.17:6001',
+  //appServer: 'https://ionic.mybluemix.net',
+  appServer: 'http://10.0.1.17:6001',
   localhostPort: '6001'
 })
 .run(function($ionicPlatform) {

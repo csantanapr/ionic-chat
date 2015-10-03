@@ -1,45 +1,10 @@
 angular.module('starter.services', []);
-angular.module('starter.services').factory('FakeChat', function ($rootScope) {
-    var posts = [];
-    var cbPostArrived;
-    return {
-        posts: posts,
-        add: function (post) {
-                posts.push(post);
-                cbPostArrived();
-        },
-        init: function (cb, handle, avatar) {
-            cbPostArrived = cb;
-        }
-    };
-});
 
-angular.module('starter.services').factory('serverHost', function ($window, AppConfig) {
-    var finalHost;
-    var appServer = AppConfig.appServer;
-    var localhostPort = AppConfig.localhostPort;
-    var host = $window.location.hostname;
-    var port = $window.location.port;
-    var protocol = $window.location.protocol
-    
-    if(port === localhostPort){
-        finalHost = protocol + '//' + host + ':'+port;
-    } else if (host.indexOf('mybluemix.net') > 0) {
-        finalHost = protocol + '//' + host;
-    } else {
-        finalHost = appServer;
-    }
-    
-    return finalHost;
-
-});
-
-angular.module('starter.services').factory('SocketIO', function ($rootScope, serverHost) {
+angular.module('starter.services').factory('SocketIO', function ($rootScope, $timeout, $ionicScrollDelegate, serverHost) {
     var webSocketHost = serverHost;
     var socket = io(webSocketHost);
     var cbPostArrived;
     var posts = [];
-    
     
     socket.on('connect', function () {
         console.log('connected');
@@ -49,25 +14,24 @@ angular.module('starter.services').factory('SocketIO', function ($rootScope, ser
         addLocalPost(data.message)
     });
     
-    function init(cb, handle) {
-        cbPostArrived = cb;
-    }
-    
     function addLocalPost(post) {
         $rootScope.$apply(function () {
             posts.push(post);
-            cbPostArrived();
+            scrollBottom();
         });
     }
+    
+    function scrollBottom() {
+		  $timeout(function () { $ionicScrollDelegate.scrollBottom(true); }, 300);
+	  }
     
     return {
         posts: posts,
         add: function (post) {
             posts.push(post);
-            cbPostArrived();
+            scrollBottom();
             socket.emit('new message', post);
-        },
-        init: init
+        }
     };
 
 });
@@ -121,5 +85,36 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
     return {
         takePicture: showSheet
     }
+});
+
+angular.module('starter.services').factory('FakeChat', function ($rootScope, $ionicScrollDelegate) {
+    var posts = [];
+    return {
+        posts: posts,
+        add: function (post) {
+          posts.push(post);
+          $timeout(function () { $ionicScrollDelegate.scrollBottom(true); }, 300);
+        }
+    };
+});
+
+angular.module('starter.services').factory('serverHost', function ($window, AppConfig) {
+    var finalHost;
+    var appServer = AppConfig.appServer;
+    var localhostPort = AppConfig.localhostPort;
+    var host = $window.location.hostname;
+    var port = $window.location.port;
+    var protocol = $window.location.protocol
+    
+    if(port === localhostPort){
+        finalHost = protocol + '//' + host + ':'+port;
+    } else if (host.indexOf('mybluemix.net') > 0) {
+        finalHost = protocol + '//' + host;
+    } else {
+        finalHost = appServer;
+    }
+    
+    return finalHost;
+
 });
 

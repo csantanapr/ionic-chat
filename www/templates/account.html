@@ -6,24 +6,24 @@
         <ion-list>
             <label class="item item-input">
                 <span class="input-label"></span>
-                <input type="text" ng-model="handle" placeholder="Username">
+                <input type="text" ng-model="$storage.handle" placeholder="Username">
             </label>
             <label class="item item-avatar item-radio">
                 <img src="img/venkman.jpg">
-                <input type="radio" name="group" ng-model="avatar" value="img/venkman.jpg">
+                <input type="radio" name="group" ng-model="$storage.avatar" value="img/venkman.jpg">
                 <i class="radio-icon ion-checkmark"></i>
             </label>
             <label class="item item-avatar item-radio">
                 <img src="img/tully.jpg">
-                <input type="radio" name="group" ng-model="avatar" value="img/tully.jpg">
+                <input type="radio" name="group" ng-model="$storage.avatar" value="img/tully.jpg">
                 <i class="radio-icon ion-checkmark"></i>
             </label>
             <label class="item item-avatar item-radio">
                 <img src="img/slimer.jpg">
-                <input type="radio" name="group" ng-model="avatar" value="img/slimer.jpg">
+                <input type="radio" name="group" ng-model="$storage.avatar" value="img/slimer.jpg">
                 <i class="radio-icon ion-checkmark"></i>
             </label>
-            <button class="button button-full button-calm" ng-click="save(handle,avatar)" ng-disabled="!handle">
+            <button class="button button-full button-calm" ng-click="save($storage.handle,$storage.avatar)" ng-disabled="!$storage.handle">
                 Save
             </button>
         </ion-list>
