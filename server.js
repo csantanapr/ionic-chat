@@ -14,15 +14,6 @@ server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
-//Compress
-app.use(require('compression')());
-
-//Minify
-//app.use(require('express-minify')());
-
-// Routing
-app.use(express.static(__dirname + '/www'));
-
 // Enable reverse proxy support in Express. This causes the
 // the "X-Forwarded-Proto" header field to be trusted so its
 // value can be used to determine the protocol. See 
@@ -41,6 +32,17 @@ app.use (function (req, res, next) {
 		res.redirect('https://' + req.hostname + req.originalUrl);
 	}
 });
+
+//Compress
+app.use(require('compression')());
+
+//Minify
+//app.use(require('express-minify')());
+
+// Routing
+app.use(express.static(__dirname + '/www'));
+
+
 function isSecure(req) {
     // Check the trivial case first.
     if (req.secure || req.hostname === 'localhost') {
@@ -72,7 +74,8 @@ io.on('connection', function (socket) {
       //username: socket.username,
       message: data
     });
-    console.log(data.user+' say: '+data.message);
+    
+    console.log(data.user + (data.img ? ' sent an img' : ' say: '+data.message));
   });
 
   // when the client emits 'add user', this listens and executes
