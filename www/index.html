@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>Bluemix Ionic Chat App</title>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
     
 </head>
 
@@ -21,7 +19,7 @@
             <button class="button button-icon ion-gear-b" ng-click="modal.show()"></button>
         </ion-header-bar>
 
-        <ion-content style="background-color:#203849">
+        <ion-content>
             <div style="max-width: 900px; margin-left:auto; margin-right:auto">
                 <div class="card" ng-repeat="post in posts" ng-class="{myself:post.user == handle}">
                     <div class="item item-avatar item-text-wrap">
@@ -55,10 +53,11 @@
     
     
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <!-- compiled css output -->
+    <link href="css/ionic.app.min.css" rel="stylesheet">
 
+    <link href="css/style.css" rel="stylesheet">
+    
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.min.js"></script>
 
