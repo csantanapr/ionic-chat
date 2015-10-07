@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicModal, $localStorage, $sessionStorage, Camera, FakeChat, SocketIO) {
+angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicModal, $localStorage, $sessionStorage, Camera, FakeChat, SocketIO, randomAvatar) {
 	//var ChatManager = FakeChat;
 	var ChatManager = SocketIO;
 	$scope.isWebView = ionic.Platform.isWebView();
@@ -30,6 +30,7 @@ angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $
 	};
 
 	$scope.save = function () {
+    $scope.$storage.avatar = randomAvatar.getnewAvatar();
 		$scope.add("Joined");
 		$scope.modal.hide();
 	}

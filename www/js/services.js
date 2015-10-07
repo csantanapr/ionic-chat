@@ -117,4 +117,30 @@ angular.module('starter.services').factory('serverHost', function ($window, AppC
     return finalHost;
 
 });
+angular.module('starter.services').factory('randomAvatar', function ($window, AppConfig) {
+    var avatars = [
+      'img/barrett.jpg',
+      'img/bluemix-logo.png',
+      'img/slimer.jpg',
+      'img/spengler.jpg',
+      'img/stantz.jpg',
+      'img/tully.jpg',
+      'img/venkman.jpg',
+      'img/winston.jpg'
+    ];
+    
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    
+    function getnewAvatar(){
+      var i = getRandomInt(0,avatars.length-1);
+      return avatars[i];
+    }
+    
+    return {
+      getnewAvatar: getnewAvatar
+    };
+
+});
 
