@@ -6,7 +6,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment','ngStorage'])
 .constant('AppConfig',{
+  // change this url to match your bluemix application route that you selected when you deployed the app
   appServer: 'https://ionic.mybluemix.net',
+  // Important do not use localhost when using ios or android hybrid app
   //appServer: 'http://10.0.1.17:6001',
   localhostPort: '6001'
 })
