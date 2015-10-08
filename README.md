@@ -15,9 +15,11 @@
 
 - Set the hostname of WebSocket server for Ionic App to connect. 
   - Edit www/js/app.js, change from http://ionic.mybluemix.net to your local ip or remote host on Bluemix after deploying app.
+  - Run `$ ionic prepare` after making the change
   
 ```bash
-    $ ionic platform add android,ios
+    $ ionic platform add ios
+    $ ionic platform add android
     $ ionic plugin add cordova-plugin-whitelist
     $ ionic plugin add cordova-plugin-camera
     $ ionic run android
