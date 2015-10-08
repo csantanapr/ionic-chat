@@ -45,7 +45,7 @@ app.use(express.static(__dirname + '/www'));
 
 function isSecure(req) {
     // Check the trivial case first.
-    if (req.secure || req.hostname === 'localhost') {
+    if (req.secure || /mybluemix.net/i.test(req.hostname) === false) {
         return true;
     }
     // Check if we are behind Application Request Routing (ARR).
