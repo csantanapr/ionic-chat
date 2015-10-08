@@ -11,6 +11,13 @@
             <button class="button button-full button-calm" ng-click="save($storage.handle,$storage.avatar)" ng-disabled="!$storage.handle">
                 Save
             </button>
+            <div class="item item-icon-left" href="#">
+              <i class="ion-cloud"></i>
+              Chat Server
+              <span class="item-note">
+                {{serverHost}}
+              </span>
+            </div>
         </ion-list>
     </ion-content>
 </ion-modal-view>

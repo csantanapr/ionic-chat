@@ -1,12 +1,13 @@
 angular.module('starter.controllers', [])
 
-angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicModal, $localStorage, $sessionStorage, Camera, FakeChat, SocketIO, randomAvatar) {
+angular.module('starter.controllers').controller('ChatCtrl', function ($scope, $ionicModal, $localStorage, $sessionStorage, Camera, FakeChat, SocketIO, randomAvatar, serverHost) {
 	//var ChatManager = FakeChat;
 	var ChatManager = SocketIO;
 	$scope.isWebView = ionic.Platform.isWebView();
   $scope.$storage = $scope.isWebView ? $localStorage : $sessionStorage;
   $scope.$storage.avatar = $scope.$storage.avatar ? $scope.$storage.avatar : 'img/venkman.jpg';
   $scope.posts = ChatManager.posts;
+  $scope.serverHost = serverHost;
   
 	function addPost(message, img) {
 		ChatManager.add({
