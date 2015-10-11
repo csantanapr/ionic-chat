@@ -1,3 +1,8 @@
+declared-services:
+  cloudant-chat:
+    label: cloudantNoSQLDB
+    plan: Shared
+    
 applications:
 - disk_quota: 1024M
   host: ionic
@@ -5,4 +10,6 @@ applications:
   path: .
   domain: mybluemix.net
   instances: 1
-  memory: 256M
+  memory: 512M
+  services:
+    - cloudant-chat
