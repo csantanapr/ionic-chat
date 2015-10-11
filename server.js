@@ -133,7 +133,7 @@ io.on('connection', function (socket) {
 
     console.log(data.user + (data.img ? ' sent an img' : ' say: ' + data.message));
     //save image to the cloud
-    if (data.img) {
+    if (db && data.img) {
       db.insert(data, function (err, body) {
         if (!err)
           console.log(body);
