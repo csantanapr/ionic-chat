@@ -1,4 +1,7 @@
 node_modules/
 launchConfigurations/
 .io-config.json
+.myvcap_services.sh
+npm-debug.log
+
 
