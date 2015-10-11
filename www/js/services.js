@@ -87,6 +87,42 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
     }
 });
 
+angular.module('starter.services').factory('PouchDBListener', ['$rootScope', 'AppConfig', function ($rootScope, AppConfig) {
+
+  function DBChanged(change) {
+    if (!change.deleted) {
+      $rootScope.$apply(function () {
+        AppConfig.localDB.get(change.id, function (err, doc) {
+          $rootScope.$apply(function () {
+            if (err) console.log(err);
+            $rootScope.$broadcast('add', doc);
+          })
+        });
+      })
+    } else {
+      $rootScope.$apply(function () {
+        $rootScope.$broadcast('delete', change.id);
+      });
+    }
+  }
+
+  AppConfig.localDB.changes({
+    //since: 'now',
+    live: true,
+    include_docs: true
+  })
+    .on('change', DBChanged)
+    .on('complete', function (info) {
+      // changes() was canceled
+    })
+    .on('error', function (err) {
+      console.log(err);
+    });
+
+  return true;
+
+}]);
+
 angular.module('starter.services').factory('FakeChat', function ($rootScope, $ionicScrollDelegate) {
     var posts = [];
     return {

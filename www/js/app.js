@@ -10,7 +10,11 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'n
   appServer: 'https://ionic.mybluemix.net',
   // Important do not use localhost when using ios or android hybrid app
   //appServer: 'http://10.0.1.17:6001',
-  localhostPort: '6001'
+  localhostPort: '6001',
+  
+  localDB : new PouchDB("todos",{adapter:'websql'}),
+  
+  remoteDB: 'https://97c9a4fe-847d-4bd4-bcdd-c671a3141882-bluemix.cloudant.com/test_db1'
 })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -44,6 +48,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'n
       'menuContent': {
         templateUrl: 'templates/chat.html',
         controller: 'ChatCtrl'
+      }
+    }
+  })
+  
+  .state('app.photos', {
+    url: '/photos',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/photos.html',
+        controller: 'PhotoCtrl'
       }
     }
   });

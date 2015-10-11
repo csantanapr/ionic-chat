@@ -30,6 +30,48 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('PhotoCtrl', function($scope, $ionicPopup, PouchDBListener, AppConfig) {
+  
+   $scope.todos = [];
+   
+   PouchDB.replicate(AppConfig.remoteDB, AppConfig.localDB, {
+      live: true,
+      retry: true
+    });
+ 
+    $scope.create = function() {
+        $ionicPopup.prompt({
+            title: 'Enter a new TODO item',
+            inputType: 'text'
+        })
+        .then(function(result) {
+            if(result !== "") {
+                if($scope.hasOwnProperty("todos") !== true) {
+                    $scope.todos = [];
+                }
+                localDB.post({title: result});
+            } else {
+                console.log("Action not completed");
+            }
+        });
+    }
+ 
+    $scope.$on('add', function(event, todo) {
+        $scope.todos.unshift(todo);
+    });
+ 
+    $scope.$on('delete', function(event, id) {
+        for(var i = 0; i < $scope.todos.length; i++) {
+            if($scope.todos[i]._id === id) {
+                $scope.todos.splice(i, 1);
+            }
+        }
+    });
+  
+  
+  
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $localStorage, $sessionStorage, randomAvatar, serverHost, SocketIO) {
 
   // With the new view caching in Ionic, Controllers are only called

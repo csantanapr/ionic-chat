@@ -1,0 +1,15 @@
+<ion-view view-title="Shared Photos">
+
+  <ion-content class="padding">
+    <ion-list>
+      <div style="max-width: 900px; margin-left:auto; margin-right:auto">
+        <div class="card" ng-repeat="todo in todos">
+          <ion-item class="item-image">
+            <img ng-src="{{todo.img}}">
+          </ion-item>
+        </div>
+      </div>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
