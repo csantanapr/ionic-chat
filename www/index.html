@@ -12,47 +12,8 @@
     <div class="splash" ng-cloak="">
        <p>Loading...</p>
     </div>
-    <ion-pane ng-controller="ChatCtrl">
-
-        <ion-header-bar class="bar-calm">
-            <h1 class="title">IonChat</h1>
-            <button class="button button-icon ion-gear-b" ng-click="modal.show()"></button>
-        </ion-header-bar>
-
-        <ion-content>
-            <div style="max-width: 900px; margin-left:auto; margin-right:auto">
-                <div class="card" ng-repeat="post in posts" ng-class="{myself:post.user == handle}">
-                    <div class="item item-avatar item-text-wrap">
-                        <img ng-src="{{post.avatar}}">
-                        <p ng-style="post.user == handle ? {color:&apos;blue&apos;} : &apos;&apos;">
-                            {{post.user ? post.user : &apos;Anonymous&apos;}}
-                            <span am-time-ago="post.timestamp"></span>
-                        </p>
-                        <h2 ng-hide="post.img">{{post.message}}</h2>
-                    </div>
-
-                    <div class="item item-image">
-                        <img ng-if="post.img" ng-src="{{post.img}}">
-                    </div>
-
-                </div>
-            </div>
-        </ion-content>
-
-        <ion-footer-bar keyboard-attach="" class="bar-calm">
-            <form id="footer-input" ng-submit="add(message)">
-                <i class="icon ion-camera" ng-click="takePicture()" ng-show="isWebView"></i>
-                <label class="bar-input">
-                    <input type="text" placeholder="Message" ng-model="message">
-                </label>
-                <div class="side-action" ng-click="add(message)" ng-hide="!message">Send</div>
-            </form>
-        </ion-footer-bar>
-
-    </ion-pane>
+    <ion-nav-view></ion-nav-view>
     
-    
-
     <!-- compiled css output -->
     <link href="css/ionic.app.min.css" rel="stylesheet">
     <!-- Uncomment next line to enable HalloWeen theme -->

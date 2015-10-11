@@ -1,0 +1,34 @@
+<ion-view view-title="IonChat">
+  <ion-content>
+
+    <div style="max-width: 900px; margin-left:auto; margin-right:auto">
+      <div class="card" ng-repeat="post in posts" ng-class="{myself:post.user == $storage.handle}">
+        <div class="item item-avatar item-text-wrap">
+          <img ng-src="{{post.avatar}}">
+          <p ng-style="post.user == $storage.handle ? {color:&apos;blue&apos;} : &apos;&apos;">
+            {{post.user ? post.user : &apos;Anonymous&apos;}}
+            <span am-time-ago="post.timestamp"></span>
+          </p>
+          <h2 ng-hide="post.img">{{post.message}}</h2>
+        </div>
+
+        <div class="item item-image">
+          <img ng-if="post.img" ng-src="{{post.img}}">
+        </div>
+
+      </div>
+    </div>
+    
+  </ion-content>
+
+  <ion-footer-bar keyboard-attach="" class="bar-calm">
+    <form id="footer-input" ng-submit="add(message)">
+      <i class="icon ion-camera" ng-click="takePicture()" ng-show="isWebView"></i>
+      <label class="bar-input">
+        <input type="text" placeholder="Message" ng-model="message">
+      </label>
+      <div class="side-action" ng-click="add(message)" ng-hide="!message">Send</div>
+    </form>
+  </ion-footer-bar>
+
+</ion-view>

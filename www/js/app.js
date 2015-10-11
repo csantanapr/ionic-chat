@@ -27,11 +27,36 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'n
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
+  })
+
+  .state('app.chat', {
+    url: '/chat',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
+      }
+    }
+  });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/chat');
+})
+
 .filter('timeAgo', function () {
     return function (date) {
         if (!date) return;
         return moment(date, 'x').fromNow();
     }
 });
+
 
 
