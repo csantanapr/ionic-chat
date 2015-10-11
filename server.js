@@ -135,8 +135,7 @@ io.on('connection', function (socket) {
     //save image to the cloud
     if (db && data.img) {
       db.insert(data, function (err, body) {
-        if (!err)
-          console.log(body);
+        if (err) { console.log(err,body); }
       });
     }
 
