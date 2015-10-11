@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
     }
  
     $scope.$on('add', function(event, todo) {
-        $scope.todos.unshift(todo);
+        $scope.todos.push(todo);
     });
  
     $scope.$on('delete', function(event, id) {
