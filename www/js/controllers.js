@@ -30,43 +30,21 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PhotoCtrl', function($scope, $ionicPopup, PouchDBListener, AppConfig) {
+.controller('PhotoCtrl', function($scope, $ionicPlatform, PouchSvc ) {
   
-   $scope.todos = [];
-   
-   PouchDB.replicate(AppConfig.remoteDB, AppConfig.localDB, {
-      live: true,
-      retry: true
-    });
- 
-    $scope.create = function() {
-        $ionicPopup.prompt({
-            title: 'Enter a new TODO item',
-            inputType: 'text'
-        })
-        .then(function(result) {
-            if(result !== "") {
-                if($scope.hasOwnProperty("todos") !== true) {
-                    $scope.todos = [];
-                }
-                localDB.post({title: result});
-            } else {
-                console.log("Action not completed");
-            }
-        });
-    }
- 
-    $scope.$on('add', function(event, todo) {
-        $scope.todos.push(todo);
-    });
- 
-    $scope.$on('delete', function(event, id) {
-        for(var i = 0; i < $scope.todos.length; i++) {
-            if($scope.todos[i]._id === id) {
-                $scope.todos.splice(i, 1);
-            }
-        }
-    });
+   //$scope.todos = [];
+
+  // Initialize the database.
+	$ionicPlatform.ready(function() {
+		PouchSvc.initDB();
+
+		// Get all birthday records from the database.
+		PouchSvc.getAllPhotos().then(function(photos) {
+			$scope.todos = photos;
+		});
+	});
+
+
   
   
   

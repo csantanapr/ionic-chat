@@ -35,7 +35,11 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-camera",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/litehelpers/Cordova-sqlite-storage",
+      "id": "cordova-sqlite-storage"
+    }
   ],
   "cordovaPlatforms": [
     "ios",

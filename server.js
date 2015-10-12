@@ -13,7 +13,7 @@ var dbService = appEnv.getService('cloudant-chat');
 var db;
 var cloudant;
 var dbCredentials = {
-  dbName: 'test_db1'
+  dbName: 'photos_db'
 };
 function initDBConnection() {
   if (dbService) {

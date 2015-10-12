@@ -4,6 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
+//var localDB = new PouchDB('todos', {adapter: 'websql'});
+
 angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'ngCordova.plugins.camera','angularMoment','ngStorage'])
 .constant('AppConfig',{
   // change this url to match your bluemix application route that you selected when you deployed the app
@@ -11,10 +14,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'n
   // Important do not use localhost when using ios or android hybrid app
   //appServer: 'http://10.0.1.17:6001',
   localhostPort: '6001',
-  
-  localDB : new PouchDB("todos",{adapter:'websql'}),
-  
-  remoteDB: 'https://97c9a4fe-847d-4bd4-bcdd-c671a3141882-bluemix.cloudant.com/test_db1'
+  remoteDBUrl: 'https://97c9a4fe-847d-4bd4-bcdd-c671a3141882-bluemix.cloudant.com/photos_db'
 })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,6 +29,13 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'n
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    
+    
+    
+    
+    
+    
   });
 })
 
