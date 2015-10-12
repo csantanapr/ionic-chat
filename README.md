@@ -2,7 +2,8 @@
 
 ## Easy to get started 
 - Step 1: click this => [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/csantanapr/ionic-chat)
-- Step 2: There is no step 2, go ahead open your web browser on your new domain name https://ionic-john123.mybluemix.net and start sending messages.
+- Step 2: Enable CORS on the Cloudant Instance
+- Step 3: Change permissions on photos_db database (read, write, replicate)
 
 ### To work locally with the code download source code via git or Download Zip button
 ```bash
