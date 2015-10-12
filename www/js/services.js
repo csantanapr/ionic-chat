@@ -87,7 +87,7 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
   }
 });
 
-angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope, AppConfig) {
+angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope, AppConfig, $timeout, $ionicScrollDelegate ) {
 
   var _db;
   var _photos;
@@ -143,7 +143,8 @@ angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope,
         _photos[index] = change.doc; // update
       } else {
         $rootScope.$apply(function () {
-            _photos.unshift(change.doc) // insert
+            _photos.push(change.doc) // insert
+            $timeout(function () { $ionicScrollDelegate.scrollBottom(true); }, 300);
           })
         
       }
