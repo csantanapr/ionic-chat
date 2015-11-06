@@ -16,9 +16,6 @@ io.on('connection', function (socket) {
   socket.on('new message', function (message) {
     var counter = 0;
     console.log('received: %s', message);
-    interv = setInterval(function(){
-      socket.emit('new message',{ message: 'polo '+counter++});
-    }, 3000);
     socket.broadcast.emit('new message', {message: message});
   });
   socket.on('disconnect', function () {
