@@ -39,10 +39,15 @@
     {
       "locator": "https://github.com/litehelpers/Cordova-sqlite-storage",
       "id": "cordova-sqlite-storage"
-    }
+    },
+    "cordova-plugin-sqlite-2"
   ],
   "cordovaPlatforms": [
-    "ios",
+    {
+      "platform": "ios",
+      "version": "latest",
+      "locator": "ios@latest"
+    },
     "android"
   ]
 }

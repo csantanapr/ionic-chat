@@ -6,6 +6,7 @@
         <div class="card" ng-repeat="todo in todos">
           <ion-item class="item-image">
             <img ng-src="{{todo.img}}">
+            <div>id={{todo._id}}, {{todo.timestamp | date}}</div>
           </ion-item>
         </div>
       </div>
