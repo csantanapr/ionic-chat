@@ -67,4 +67,11 @@
     <splash src="resources/android/splash/drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources/android/splash/drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
+  <plugin name="cordova-plugin-camera" spec="~2"/>
+  <plugin name="cordova-plugin-console" spec="~1" />
+  <plugin name="cordova-plugin-splashscreen" spec="~3"/>
+  <plugin name="cordova-plugin-statusbar" spec="~2"/>
+  <plugin name="cordova-plugin-whitelist" spec="~1"/>
+  <plugin name="ionic-plugin-keyboard" spec="~2"/>
+  <plugin name="cordova-plugin-sqlite-2" spec="1"/>
 </widget>

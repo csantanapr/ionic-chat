@@ -1,6 +1,6 @@
 ## Sample Application for Ionic Chat app using NodeJS Socket IO
 
-## Easy to get started 
+## Easy to get started setup backend
 - Step 1: click this => [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/csantanapr/ionic-chat)
 - Step 2: Enable CORS on the Cloudant Instance
 - Step 3: Change permissions on **photos_db** database (read, write, replicate)
@@ -15,7 +15,8 @@
 ### Run using Ionic on Mobile Device or Simulator
 
 - Set the hostname of WebSocket server for Ionic App to connect. 
-  - Edit www/js/app.js, change from http://ionic.mybluemix.net to your local ip or remote host on Bluemix after deploying app.
+  - Edit `www/js/app.js`, change from http://ionic.mybluemix.net to your local ip or remote host on Bluemix after deploying app.
+  - Edit `www/js/app.js`, change __DBUrl__ with your own couchdb/cloudant DB
   - Run `$ ionic prepare` after making the change
   
 ```bash
@@ -23,6 +24,8 @@
     $ ionic platform add android
     $ ionic plugin add cordova-plugin-whitelist
     $ ionic plugin add cordova-plugin-camera
+    $ ionic plugin add cordova-plugin-sqlite-2
+    $ ionic plugin add ionic-plugin-keyboard
     $ ionic run android
     $ open platforms/ios/*.xcodeproj
 ```
