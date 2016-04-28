@@ -22,10 +22,6 @@
 ```bash
     $ ionic platform add ios
     $ ionic platform add android
-    $ ionic plugin add cordova-plugin-whitelist
-    $ ionic plugin add cordova-plugin-camera
-    $ ionic plugin add cordova-plugin-sqlite-2
-    $ ionic plugin add ionic-plugin-keyboard
     $ ionic run android
     $ open platforms/ios/*.xcodeproj
 ```
@@ -33,7 +29,7 @@
 ### Run the NodeJS Chat Server locally
 ```bash
     $ npm start
-    open browser on http://localhost:8080
+    $ open http://localhost:8080
 ```
 
 ### Run simple Websockets demo
