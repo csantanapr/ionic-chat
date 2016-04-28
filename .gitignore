@@ -1,4 +1,6 @@
 node_modules/
+plugins/
+platforms/
 launchConfigurations/
 .io-config.json
 .myvcap_services.sh
