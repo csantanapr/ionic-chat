@@ -7,6 +7,6 @@
     "moment": "~2.10.6",
     "ngCordova": "~0.1.20-alpha",
     "ngstorage": "~0.3.9",
-    "pouchdb": "~5.0.0"
+    "angular-pouchdb": "^4.1.0"
   }
 }

@@ -1,4 +1,4 @@
-angular.module('starter.services', []);
+angular.module('starter.services', ['pouchdb']);
 
 angular.module('starter.services').factory('SocketIO', function ($rootScope, $timeout, $ionicScrollDelegate, serverHost) {
   var webSocketHost = serverHost;
@@ -87,25 +87,28 @@ angular.module('starter.services').factory('Camera', function ($ionicActionSheet
   }
 });
 
-angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope, AppConfig, $timeout, $ionicScrollDelegate ) {
+angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope, AppConfig, $timeout, $ionicScrollDelegate, pouchDB ) {
 
   var _db;
   var _photos;
+
 
   return {
     initDB: initDB,
     getAllPhotos: getAllPhotos,
   };
 
-  function initDB() {
+  function initDB(refresh) {
     // Creates the database or opens if it already exists
     //_db = new PouchDB('https://97c9a4fe-847d-4bd4-bcdd-c671a3141882-bluemix.cloudant.com/test_db1', { adapter: 'websql' });
-    _db = new PouchDB('photos', { adapter: 'websql' });
+    _db = new pouchDB('photos', { adapter: 'websql' });
     
-    PouchDB.replicate(AppConfig.remoteDBUrl, _db, {
+ 
+    _db.replicate.from(AppConfig.remoteDBUrl, {
       live: true,
       retry: true
     });
+
     
   };
 
@@ -142,11 +145,7 @@ angular.module('starter.services').factory('PouchSvc', function ($q, $rootScope,
       if (photo && photo._id === change.id) {
         _photos[index] = change.doc; // update
       } else {
-        $rootScope.$apply(function () {
             _photos.push(change.doc) // insert
-            $timeout(function () { $ionicScrollDelegate.scrollBottom(true); }, 300);
-          })
-        
       }
     }
   }
